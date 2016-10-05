@@ -22,14 +22,6 @@ app = Flask(__name__)
 cache = Cache(app, config=CACHE_CONFIG)
 
 
-def parse_xml(url):
-    source = get(url).text.encode('utf-8')
-    try:
-        return etree.fromstring(source, parser=etree.XMLParser(ns_clean=True))
-    except etree.XMLSyntaxError:
-        pass
-
-
 def parse_coordinates(string):
     points = []
     for point in string.split(' '):
@@ -41,8 +33,17 @@ def parse_coordinates(string):
 @app.route('/<int:v>/<string:category>/<string:dataset>.geojson')
 @cache.cached(timeout=5 * 60 * 60)
 def get_dataset(v, category, dataset):
+    datatank = 'https://datatank.stad.gent/'
     key = str(v) + '/' + category + '/' + dataset
-    tree = parse_xml('https://datatank.stad.gent/' + key + '.xml')
+
+    try:
+        source = get(datatank + key + '.kml').text.encode('utf-8')
+        tree = etree.fromstring(source, parser=etree.XMLParser(ns_clean=True))
+    except:
+        return jsonify({
+            'error': 'Sorry, but we could not find the requested dataset'
+        }), 404
+
     nsm = tree.nsmap
     nsm['kml'] = nsm.pop(None)
     features = []
@@ -64,7 +65,8 @@ def get_dataset(v, category, dataset):
         features.append(Feature(geometry=geometry, properties=properties))
 
     return jsonify(FeatureCollection(features, properties={
-        'title': tree.xpath('//kml:Document/kml:Folder/kml:name', namespaces=nsm)[0].text
+        'title': tree.xpath('//kml:Document/kml:Folder/kml:name', namespaces=nsm)[0].text,
+        'source': datatank + key + '.geojson',
     }))
 
 
