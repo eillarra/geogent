@@ -48,4 +48,12 @@ Tab size is 4 **spaces**. Maximum line length is 120. Furthermore your code has 
 It is recommended to use [flake8](https://pypi.python.org/pypi/flake8) which combines all the checks.
 
 
+Heroku
+======
+
+Use Heroku Containers to deploy the app:
+
+    $ heroku container:push web
+
+
 [license-badge]: https://img.shields.io/badge/license-MIT-blue.svg
