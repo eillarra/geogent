@@ -4,11 +4,11 @@ verify_ssl = true
 name = "pypi"
 
 [requires]
-python_version = "3.6"
+python_version = "3.7"
 
 [packages]
 flask = "*"
-flask-cache = "*"
+flask-caching = "*"
 geojson = "*"
 gunicorn = "*"
 lxml = "*"

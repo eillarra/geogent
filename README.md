@@ -33,10 +33,14 @@ For developers
 
 Application dependencies
 ------------------------
-The application uses the [pip Package Manager](http://pip.readthedocs.org/en/latest/) to install dependencies.
-While in development, you will need to read the dependencies from the following file:
+The application uses [Pipenv](https://docs.pipenv.org/) to manage Python packages:
 
-    $ pip install -r requirements/development.txt
+    $ pipenv install --dev
+    $ pipenv shell
+
+Update dependencies (and manually update `requirements.txt`):
+
+    $ pipenv update --dev && pipenv lock -r
 
 Running the server
 ------------------

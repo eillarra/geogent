@@ -2,7 +2,7 @@ import json
 import os
 
 from flask import Flask, Response, send_from_directory
-from flask_cache import Cache
+from flask_caching import Cache
 from geojson import FeatureCollection, Feature, Point, Polygon
 from lxml import etree
 from requests import get
