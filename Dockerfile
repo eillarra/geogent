@@ -12,5 +12,3 @@ RUN apk add --no-cache \
     && apk del .build
 
 COPY . /app
-
-CMD gunicorn geogent:app

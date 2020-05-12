@@ -61,7 +61,9 @@ Heroku
 
 Use Heroku Containers to deploy the app:
 
-    $ heroku container:push web
+    $ heroku login
+    $ heroku stack:set container
+    $ git push heroku master
 
 
 [license-badge]: https://img.shields.io/badge/license-MIT-blue.svg
