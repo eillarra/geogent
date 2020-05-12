@@ -4,7 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [requires]
-python_version = "3.7"
+python_version = "3.8"
 
 [packages]
 flask = "*"
@@ -16,5 +16,6 @@ redis = "*"
 requests = "*"
 
 [dev-packages]
+black = "==19.10b0"
 flake8 = "*"
 flake8-mypy = "*"
