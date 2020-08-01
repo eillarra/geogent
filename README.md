@@ -1,3 +1,8 @@
+On June 30 2020 the city of Gent [migrated its Open Data portal to a new platform](https://youtu.be/6BvIIO5-eNA),
+so this hack is not needed anymore (and it won't work anyway). This repository is **archived** and read-only now.
+
+-----
+
 Improved GeoJSON datasets for data.stad.gent  
 ============================================
 
